@@ -1,2 +1,2 @@
-n_estimators: 1
-max_depth: 1
+n_estimators: 2
+max_depth: 2

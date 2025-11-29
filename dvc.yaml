@@ -1,3 +1,23 @@
+stages:
+  data_ingestion:
+    cmd: python3 src/data_ingestion.py
+    deps:
+    - src/data_ingestion.py
+    params:
+    - data_ingestion.seed
+    outs:
+    - data/classification_dataset_processed.csv
+  training:
+    cmd: python3 src/training.py
+    deps:
+    - data/classification_dataset_processed.csv
+    params:
+    - training.test_size
+    - training.random_state
+    - training.n_estimators
+    - training.max_depth
+    outs:
+    - models/rf_model.pkl
 params:
 - dvclive/params.yaml
 metrics:

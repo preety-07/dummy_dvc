@@ -1,0 +1,35 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python3 src/data_ingestion.py
+    deps:
+    - path: src/data_ingestion.py
+      hash: md5
+      md5: 79d12022abe5f0f57585513aadd8d77a
+      size: 621
+    params:
+      params.yaml:
+        data_ingestion.seed: 18
+    outs:
+    - path: data/classification_dataset_processed.csv
+      hash: md5
+      md5: 1614465522f0bf3c8bd72197da2e153e
+      size: 3283
+  training:
+    cmd: python3 src/training.py
+    deps:
+    - path: data/classification_dataset_processed.csv
+      hash: md5
+      md5: 1614465522f0bf3c8bd72197da2e153e
+      size: 3283
+    params:
+      params.yaml:
+        training.max_depth: 2
+        training.n_estimators: 2
+        training.random_state: 18
+        training.test_size: 0.2
+    outs:
+    - path: models/rf_model.pkl
+      hash: md5
+      md5: 8a81304d4ec45447a81f7c7d1232af7b
+      size: 3018

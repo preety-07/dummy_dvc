@@ -1,0 +1,8 @@
+data_ingestion:
+  seed: 18
+
+training:
+  test_size: 0.2
+  random_state: 18
+  n_estimators: 2
+  max_depth: 2
